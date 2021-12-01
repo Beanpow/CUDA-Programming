@@ -1,4 +1,4 @@
-#include "error.cuh"
+#include "err.cuh"
 #include <math.h>
 #include <stdio.h>
 
@@ -27,14 +27,12 @@ int main(void)
     CHECK(cudaMalloc((void **)&d_x, M));
     CHECK(cudaMalloc((void **)&d_y, M));
     CHECK(cudaMalloc((void **)&d_z, M));
-    CHECK(cudaMemcpy(d_x, h_x, M, cudaMemcpyHostToDevice));
-    CHECK(cudaMemcpy(d_y, h_y, M, cudaMemcpyHostToDevice));
+    CHECK(cudaMemcpy(d_x, h_x, M, cudaMemcpyDeviceToHost));
+    CHECK(cudaMemcpy(d_y, h_y, M, cudaMemcpyDeviceToHost));
 
-    const int block_size = 1280;
+    const int block_size = 128;
     const int grid_size = (N + block_size - 1) / block_size;
     add<<<grid_size, block_size>>>(d_x, d_y, d_z, N);
-    CHECK(cudaGetLastError());
-    // CHECK(cudaDeviceSynchronize());
 
     CHECK(cudaMemcpy(h_z, d_z, M, cudaMemcpyDeviceToHost));
     check(h_z, N);
