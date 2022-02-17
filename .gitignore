@@ -4,3 +4,5 @@ src/*/*.lib
 src/*/*.obj
 src/*/*/a.out
 
+myown/*/*/*.o
+
