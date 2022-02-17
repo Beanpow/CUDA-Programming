@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 
     int N = 4 * nx * nx * nx;
     int Ns = 100;
-    int MN = 200;
+    int MN = 200; // max number of neighbors
     real T_0 = 60.0;
     real ax = 5.385;
     real time_step = 5.0 / TIME_UNIT_CONVERSION;

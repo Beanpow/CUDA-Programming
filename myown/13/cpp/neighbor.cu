@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 void find_neighbor(int N, int MN, Atom *atom)
 {
     int *NN = atom->NN;
@@ -29,6 +30,8 @@ void find_neighbor(int N, int MN, Atom *atom)
             apply_mic(box, &x12, &y12, &z12);
             real d_square = x12*x12 + y12*y12 + z12*z12;
 
+            //TODO: this assignment may cause fatal memory write error!
+            //      exactly at last atom, NN[end] > 200
             if (d_square < cutoff_square)
             {        
                 NL[n1 * MN + NN[n1]++] = n2;
