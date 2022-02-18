@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.csv": "csv",
+        "*.cu": "cpp",
+        "*.cuh": "cpp",
+        "system_error": "cpp",
+        "*.tcc": "cpp",
+        "random": "cpp"
+    }
+}
