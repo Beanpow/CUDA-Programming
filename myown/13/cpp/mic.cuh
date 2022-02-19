@@ -1,6 +1,6 @@
 #pragma once
 
-static void apply_mic(real *box, real *x12, real *y12, real *z12)
+static void __device__ __host__ apply_mic(real *box, real *x12, real *y12, real *z12)
 {
     if      (*x12 < - box[3]) { *x12 += box[0]; } 
     else if (*x12 > + box[3]) { *x12 -= box[0]; }

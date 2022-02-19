@@ -1,7 +1,7 @@
 all: ljmd
 
 CC = nvcc
-CFLAGS = -O3 -arch=sm_70 
+CFLAGS = -O3 -arch=sm_70 -g
 
 ljmd: initialize.o integrate.o neighbor.o force.o memory.o main.o
 	$(CC) -o ljmd \

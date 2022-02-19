@@ -26,4 +26,14 @@ struct Atom
     real *pe;
     real *ke;
     real *box;
+
+    int *g_NN;
+    int *g_NL;
+    real *g_x;
+    real *g_y;
+    real *g_z;
+    real *g_fx;
+    real *g_fy;
+    real *g_fz;
+    real *g_pe;
 };

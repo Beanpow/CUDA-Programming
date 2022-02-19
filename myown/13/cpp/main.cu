@@ -5,12 +5,14 @@
 #include "integrate.cuh"
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 
 int main(int argc, char **argv)
 {
     int nx = 5;
     int Ne = 20000;
     int Np = 20000;
+    cudaSetDevice(0);
 
     if (argc != 3) 
     { 
@@ -36,8 +38,12 @@ int main(int argc, char **argv)
     initialize_position(nx, ax, &atom);
     initialize_velocity(N, T_0, &atom);
     find_neighbor(N, MN, &atom);
+    clock_t startTime = clock();
+    CHECK(cudaDeviceSynchronize());
     equilibration(Ne, N, MN, T_0, time_step, &atom);
+    printf("%g\n", float(clock() - startTime) / CLOCKS_PER_SEC);
     production(Np, Ns, N, MN, T_0, time_step, &atom);
+    printf("%g\n", float(clock() - startTime) / CLOCKS_PER_SEC);
     deallocate_memory(&atom);
     return 0;
 }
